@@ -1,0 +1,13 @@
+h4 {
+  display: inline;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.mt-100 {
+	margin-top: 100px;
+}
