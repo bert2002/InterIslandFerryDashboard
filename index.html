@@ -80,7 +80,7 @@
     var month = new Intl.DateTimeFormat('en-US', options).format(dt)
     document.getElementById("month").innerHTML = month;
     // Show Ferry Schedule
-    $.getJSON("/ferry/" + ParameterFerry +".json", function(data) {
+    $.getJSON("ferry/" + ParameterFerry +".json", function(data) {
       for (var i=0;i<data.length;++i) {
         var FerryType = data[i].type;
         var FerryTime = data[i].dep.split(":");
