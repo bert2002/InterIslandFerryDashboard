@@ -21,7 +21,7 @@
 
       <div class="row mb-5">
         <div class="col-8 themed-grid-col">
-          <h1><span id="weekday"></span>, <span id="day"></span> <span id="month"></span></h1>
+          <h2><span id="weekday"></span>, <span id="day"></span> <span id="month"></span></h2>
           <h1><span id="date"></span></h1>
         </div>
         <div class="col-4 themed-grid-col"></div>
@@ -38,10 +38,10 @@
       <div class="row mb-5 mt-100">
         <div class="col-12 themed-grid-col">
           <div class="weather-wrapper hide">
-            <img src="" class="weather-icon"/> <h4><span class="weather-temperature ml-2 mr-2"></span><small><span class="weather-description"></span></small></h4>
-            <img src="dist/img/weather/humidity.png"/> <h4><span class="weather-humidity ml-2 mr-2"></span></h4>
-            <img src="dist/img/weather/speed.png"/> <h4><span class="weather-wind-speed ml-2 mr-2"></span></h4>
-            <img src="dist/img/weather/sunrise.png"/> <h4><span class="weather-sunrise ml-2"></span> / <span class="weather-sunset mr-2"></span></h4>            
+            <img src="" class="weather-icon"/> <h4><span class="weather-temperature ml-2 mr-2"></span><small><span class="weather-description"></span></small></h4><br>
+            <img src="dist/img/weather/humidity.png" class="mt-3" /> <h4><span class="weather-humidity ml-2 mr-2"></span></h4><br>
+            <img src="dist/img/weather/speed.png" class="mt-3"/> <h4><span class="weather-wind-speed ml-2 mr-2"></span></h4><br>
+            <img src="dist/img/weather/sunrise.png" class="mt-3"/> <h4><span class="weather-sunrise ml-2"></span> / <span class="weather-sunset mr-2"></span></h4><br>
           </div>
         </div>
       </div>
@@ -128,7 +128,6 @@
         iconTarget: '.weather-icon',
         customIcons: 'dist/img/weather/',
         success: function(data) {
-          // show weather
           $('.weather-wrapper').show();
           console.log(data);
         },
