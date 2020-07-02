@@ -41,9 +41,9 @@
         <div class="col-12 themed-grid-col">
           <div class="weather-wrapper hide">
             <img src="" class="weather-icon"/> <h4><span class="weather-temperature ml-2 mr-2"></span><small><span class="weather-description"></span></small></h4>
-            <img src="/dist/img/weather/humidity.png"/> <h4><span class="weather-humidity ml-2 mr-2"></span></h4>
-            <img src="/dist/img/weather/speed.png"/> <h4><span class="weather-wind-speed ml-2 mr-2"></span></h4>
-            <img src="/dist/img/weather/sunrise.png"/> <h4><span class="weather-sunrise ml-2"></span> / <span class="weather-sunset mr-2"></span></h4>            
+            <img src="dist/img/weather/humidity.png"/> <h4><span class="weather-humidity ml-2 mr-2"></span></h4>
+            <img src="dist/img/weather/speed.png"/> <h4><span class="weather-wind-speed ml-2 mr-2"></span></h4>
+            <img src="dist/img/weather/sunrise.png"/> <h4><span class="weather-sunrise ml-2"></span> / <span class="weather-sunset mr-2"></span></h4>            
           </div>
         </div>
       </div>
@@ -128,7 +128,7 @@
         sunriseTarget: '.weather-sunrise',
         sunsetTarget: '.weather-sunset',
         iconTarget: '.weather-icon',
-        customIcons: '/dist/img/weather/',
+        customIcons: 'dist/img/weather/',
         success: function(data) {
           // show weather
           $('.weather-wrapper').show();
