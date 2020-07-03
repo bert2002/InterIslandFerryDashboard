@@ -21,7 +21,7 @@
 
       <div class="row mb-5">
         <div class="col-8 themed-grid-col">
-          <h2><span id="weekday"></span>, <span id="day"></span> <span id="month"></span></h2>
+          <h3><span id="weekday"></span>, <span id="day"></span> <span id="month"></span> <span id="year"></span></h3>
           <h1><span id="date"></span></h1>
         </div>
         <div class="col-4 themed-grid-col"></div>
@@ -77,6 +77,9 @@
     var options = { month: 'long'};
     var month = new Intl.DateTimeFormat('en-US', options).format(dt)
     document.getElementById("month").innerHTML = month;
+    // Show Year
+    var year = dt.getFullYear();
+    document.getElementById("year").innerHTML = year;
     // Show Ferry Schedule
     $.getJSON("ferry/" + ParameterFerry +".json", function(data) {
       for (var i=0;i<data.length;++i) {
