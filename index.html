@@ -29,8 +29,8 @@
 
       <div class="row mb-5">
         <div class="col-8 themed-grid-col">
-          <h3 class="pb-3">Peng Chau to Central</h3>
-          <h4><span id="FerryType"></span><span id="FullText"></span></h4>
+          <u><h5 class="pb-3">Peng Chau to Central</h5></u>
+          <h2><span id="FerryType"></span><span id="FullText"></span></h2>
         </div>
         <div class="col-4 themed-grid-col"></div>
       </div>
@@ -97,7 +97,7 @@
             FullText += " <small>in " + TimeDifferenceMins + MinuteText + '</small>'
           }
           if (FerryType == 'fast') {
-            FullText = '<svg width="0.5em" height="0.5em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg> ' + FullText;
+            FullText = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg> ' + FullText;
           } else {
             FullText = '<svg width="0.5em" height="0.5em"/></svg> ' + FullText;
           }
