@@ -29,13 +29,13 @@
 
       <div class="row mb-5">
         <div class="col-8 themed-grid-col">
-          <u><h5 class="pb-3">Peng Chau to Central</h5></u>
+          <u><h5 class="pb-3" id="FerryScheduleName"></h5></u>
           <h2><span id="FerryType"></span><span id="FullText"></span></h2>
         </div>
         <div class="col-4 themed-grid-col"></div>
       </div>
 
-      <div class="row mb-5 mt-100">
+      <div class="row mb-5 mt-50">
         <div class="col-12 themed-grid-col">
           <div class="weather-wrapper hide">
             <img src="" class="weather-icon"/> <h4><span class="weather-temperature ml-2 mr-2"></span><small><span class="weather-description"></span></small></h4><br>
@@ -60,6 +60,7 @@
     // Read Parameters
     var parsed_qs = parse_query_string(location.search);
     ParameterFerry = parsed_qs.ferry;
+    ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim()
     ParameterInstagram = parsed_qs.instagram;
 
     // Show Time
@@ -79,7 +80,9 @@
     document.getElementById("month").innerHTML = month;
     // Show Year
     var year = dt.getFullYear();
-    document.getElementById("year").innerHTML = year;
+    document.getElementById("FerryScheduleName").innerHTML = ParameterFerryName;
+    // Change Schedule Name
+    document.getElementById("month").innerHTML = month;
     // Show Ferry Schedule
     $.getJSON("ferry/" + ParameterFerry +".json", function(data) {
       for (var i=0;i<data.length;++i) {
