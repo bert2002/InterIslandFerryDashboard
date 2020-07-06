@@ -37,10 +37,16 @@
 
       <div class="row mb-5 mt-50">
         <div class="col-12 themed-grid-col">
-          <div class="weather-wrapper hide">
+          <div class="hide" id="temperature">
             <img src="" class="weather-icon"/> <h4><span class="weather-temperature ml-2 mr-2"></span><small><span class="weather-description"></span></small></h4><br>
+          </div>
+          <div class="hide" id="humidity">
             <img src="dist/img/weather/humidity.png" class="mt-3" /> <h4><span class="weather-humidity ml-2 mr-2"></span></h4><br>
+          </div>
+          <div class="hide" id="wind">
             <img src="dist/img/weather/speed.png" class="mt-3"/> <h4><span class="weather-wind-speed ml-2 mr-2"></span></h4><br>
+          </div>
+          <div class="hide" id="sunrise">
             <img src="dist/img/weather/sunrise.png" class="mt-3"/> <h4><span class="weather-sunrise ml-2"></span> / <span class="weather-sunset mr-2"></span></h4><br>
           </div>
         </div>
@@ -60,7 +66,7 @@
     // Read Parameters
     var parsed_qs = parse_query_string(location.search);
     ParameterFerry = parsed_qs.ferry;
-    ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim()
+    ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim();
     ParameterInstagram = parsed_qs.instagram;
 
     // Show Time
@@ -124,22 +130,22 @@
         lat: '22.32',
         lng: '114.18',
         units: 'c',
-        descriptionTarget: '.weather-description',
-        windSpeedTarget: '.weather-wind-speed',
-        minTemperatureTarget: '.weather-min-temperature',
-        maxTemperatureTarget: '.weather-max-temperature',
-        humidityTarget: '.weather-humidity',
-        sunriseTarget: '.weather-sunrise',
-        sunsetTarget: '.weather-sunset',
+        descriptionTarget: EnableTemperature ? '.weather-description' : '',
+        windSpeedTarget: EnableWind ? '.weather-wind-speed' : '',
+        minTemperatureTarget: EnableTemperature ? '.weather-min-temperature' : '',
+        maxTemperatureTarget: EnableTemperature ? '.weather-max-temperature' : '',
+        humidityTarget: EnableHumidity ? '.weather-humidity' : '',
+        sunriseTarget: EnableSunrise ? '.weather-sunrise' : '',
+        sunsetTarget: EnableSunrise ?  '.weather-sunset' : '',
         iconTarget: '.weather-icon',
         customIcons: 'dist/img/weather/',
         success: function(data) {
-          $('.weather-wrapper').show();
-          console.log(data);
+          EnableSunrise ? $('#sunrise').show() : '';
+          EnableWind ? $('#wind').show() : '';
+          EnableHumidity ? $('#humidity').show() : '';
+          EnableTemperature ? $('#temperature').show() : '';
         },
         error: function(data) {
-          console.log(data.error);
-          $('.weather-wrapper').remove();
         }
       });
     });
