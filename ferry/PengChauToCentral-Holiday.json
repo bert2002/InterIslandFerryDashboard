@@ -1,0 +1,8 @@
+[
+	{ "dep": "01:00", "type": "slow" },
+	{ "dep": "09:00", "type": "slow" },
+	{ "dep": "09:15", "type": "slow" },
+	{ "dep": "23:00", "type": "slow" },
+	{ "dep": "23:15", "type": "slow" },
+	{ "dep": "23:59", "type": "slow" }
+]

@@ -7,3 +7,4 @@ var EnableWind = 0;
 
 // do not modify
 var FerryCount = 0;
+var Calendar = 'Weekday';
