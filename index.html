@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="refresh" content="50">
+    <!-- <meta http-equiv="refresh" content="50"> -->
     <title>Inter Island Magic Mirror Page</title>
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="dist/css/helper.css" rel="stylesheet">
@@ -16,6 +16,8 @@
     <script src="dist/js/jquery.instagramFeed.min.js"></script>
     <!-- Weather -->
     <script src="dist/js/openweather.js"></script>
+    <!-- NoSleep -->
+    <script src="dist/js/NoSleep.js"></script>
   </head>
   <body class="py-4 text-white bg-dark">
     <div class="container-fluid">
@@ -64,71 +66,71 @@
     </div>
   </body>
   <script>
-    // Read Parameters
-    var parsed_qs = parse_query_string(location.search);
-    ParameterFerry = parsed_qs.ferry;
-    ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim();
-    ParameterInstagram = parsed_qs.instagram;
+    (function(){
+      // Read Parameters
+      var parsed_qs = parse_query_string(location.search);
+      ParameterFerry = parsed_qs.ferry;
+      ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim();
+      ParameterInstagram = parsed_qs.instagram;
 
-    // Show Time
-    var dt = new Date();
-    var date = hours_with_leading_zeros(dt) + ":" + minutes_with_leading_zeros(dt);
-    document.getElementById("date").innerHTML = date;
-    // Show Weekday
-    var options = { weekday: 'long' };
-    var weekday = new Intl.DateTimeFormat('en-US', options).format(dt);
-    document.getElementById("weekday").innerHTML = weekday;
-    // Show Day
-    var day = dt.getDate();
-    document.getElementById("day").innerHTML = day;
-    // Show Month
-    var options = { month: 'long' };
-    var month = new Intl.DateTimeFormat('en-US', options).format(dt)
-    document.getElementById("month").innerHTML = month;
-    // Show Year
-    var year = dt.getFullYear();
-    document.getElementById("FerryScheduleName").innerHTML = ParameterFerryName;
-    // Change Schedule Name
-    document.getElementById("month").innerHTML = month;
-    // Check for Holiday
-    if (HongKongHolidays.includes(day + month) || weekday == 'Sunday') {
-      Calendar = "Holiday";
-      document.getElementById("HolidayFlag").innerHTML = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cup-straw" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.497 5.942l.959 8.155c.014.118.06.181.101.21C5.912 14.555 6.724 15 8 15s2.088-.445 2.443-.693c.04-.029.087-.092.101-.21l.96-8.155.993.116-.96 8.156a1.279 1.279 0 0 1-.52.912C10.53 15.466 9.522 16 8 16s-2.531-.534-3.016-.874a1.279 1.279 0 0 1-.521-.912l-.96-8.156.994-.116z"/><path fill-rule="evenodd" d="M4.467 6.116l.005-.006a.024.024 0 0 1-.005.006zM4.645 6c.146-.073.362-.15.648-.222C5.967 5.61 6.924 5.5 8 5.5c1.076 0 2.033.11 2.707.278.286.072.502.149.648.222-.146.073-.362.15-.648.222C10.033 6.39 9.076 6.5 8 6.5c-1.076 0-2.033-.11-2.707-.278A3.284 3.284 0 0 1 4.645 6zm6.888.116s-.003-.002-.005-.006l.005.006zm-.005-.226a.026.026 0 0 1 .005-.006l-.005.006zm-7.056 0l-.005-.006s.003.002.005.006zm.578-1.082C5.824 4.614 6.867 4.5 8 4.5c1.133 0 2.176.114 2.95.308.383.096.728.218.99.372.228.135.56.396.56.82 0 .424-.332.685-.56.82-.262.154-.607.276-.99.372-.774.194-1.817.308-2.95.308-1.133 0-2.176-.114-2.95-.308-.383-.096-.728-.218-.99-.372-.228-.135-.56-.396-.56-.82 0-.424.332-.685.56-.82.262-.154.607-.276.99-.372z"/><path fill-rule="evenodd" d="M12.964 1.314a.5.5 0 0 1-.278.65l-2.255.902-.943 4.242-.976-.216 1-4.5a.5.5 0 0 1 .302-.356l2.5-1a.5.5 0 0 1 .65.278z"/></svg>';
-    }
-    // Show Ferry Schedule
-    $.getJSON("ferry/" + ParameterFerry + "-" + Calendar + ".json", function(data) {
-      for (var i=0;i<data.length;++i) {
-        var FerryType = data[i].type;
-        var FerryTime = data[i].dep.split(":");
-        var NextFerry = new Date();
-        NextFerry.setHours(FerryTime[0]);
-        NextFerry.setMinutes(FerryTime[1]);
-        NextFerry.setSeconds(0);
-        // check if we have a ferry for you
-        if (new Date(NextFerry) > new Date()) {
-          FerryCount += 1;
-          var TimeDifferenceMins = diff_minutes(NextFerry,dt);
-          var Other = diff_minutes(NextFerry,dt);
-          var MinuteText = TimeDifferenceMins == 1 ? " minute" : " minutes";
-          var FullText = FerryTime[0] + ":" + FerryTime[1]
-          if (TimeDifferenceMins < 55) {
-            FullText += " <small>in " + TimeDifferenceMins + MinuteText + '</small>'
-          }
-          if (FerryType == 'fast') {
-            FullText = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg> ' + FullText;
-          } else {
-            FullText = '<svg width="1em" height="1em"/></svg> ' + FullText;
-          }
-          $("#FullText").append(FullText + '<br>');
-        }
-        if (FerryCount > maxFerry) {
-          break;
-        }
+      // Show Time
+      var dt = new Date();
+      var date = hours_with_leading_zeros(dt) + ":" + minutes_with_leading_zeros(dt);
+      document.getElementById("date").innerHTML = date;
+      // Show Weekday
+      var options = { weekday: 'long' };
+      var weekday = new Intl.DateTimeFormat('en-US', options).format(dt);
+      document.getElementById("weekday").innerHTML = weekday;
+      // Show Day
+      var day = dt.getDate();
+      document.getElementById("day").innerHTML = day;
+      // Show Month
+      var options = { month: 'long' };
+      var month = new Intl.DateTimeFormat('en-US', options).format(dt)
+      document.getElementById("month").innerHTML = month;
+      // Show Year
+      var year = dt.getFullYear();
+      document.getElementById("FerryScheduleName").innerHTML = ParameterFerryName;
+      // Change Schedule Name
+      document.getElementById("month").innerHTML = month;
+      // Check for Holiday
+      if (HongKongHolidays.includes(day + month) || weekday == 'Sunday') {
+        Calendar = "Holiday";
+        document.getElementById("HolidayFlag").innerHTML = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cup-straw" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.497 5.942l.959 8.155c.014.118.06.181.101.21C5.912 14.555 6.724 15 8 15s2.088-.445 2.443-.693c.04-.029.087-.092.101-.21l.96-8.155.993.116-.96 8.156a1.279 1.279 0 0 1-.52.912C10.53 15.466 9.522 16 8 16s-2.531-.534-3.016-.874a1.279 1.279 0 0 1-.521-.912l-.96-8.156.994-.116z"/><path fill-rule="evenodd" d="M4.467 6.116l.005-.006a.024.024 0 0 1-.005.006zM4.645 6c.146-.073.362-.15.648-.222C5.967 5.61 6.924 5.5 8 5.5c1.076 0 2.033.11 2.707.278.286.072.502.149.648.222-.146.073-.362.15-.648.222C10.033 6.39 9.076 6.5 8 6.5c-1.076 0-2.033-.11-2.707-.278A3.284 3.284 0 0 1 4.645 6zm6.888.116s-.003-.002-.005-.006l.005.006zm-.005-.226a.026.026 0 0 1 .005-.006l-.005.006zm-7.056 0l-.005-.006s.003.002.005.006zm.578-1.082C5.824 4.614 6.867 4.5 8 4.5c1.133 0 2.176.114 2.95.308.383.096.728.218.99.372.228.135.56.396.56.82 0 .424-.332.685-.56.82-.262.154-.607.276-.99.372-.774.194-1.817.308-2.95.308-1.133 0-2.176-.114-2.95-.308-.383-.096-.728-.218-.99-.372-.228-.135-.56-.396-.56-.82 0-.424.332-.685.56-.82.262-.154.607-.276.99-.372z"/><path fill-rule="evenodd" d="M12.964 1.314a.5.5 0 0 1-.278.65l-2.255.902-.943 4.242-.976-.216 1-4.5a.5.5 0 0 1 .302-.356l2.5-1a.5.5 0 0 1 .65.278z"/></svg>';
       }
-    });
-  </script>
-  <script>
-    $(function() {
+      // Show Ferry Schedule
+      $("#FullText").empty()
+      $.getJSON("ferry/" + ParameterFerry + "-" + Calendar + ".json", function(data) {
+        for (var i=0;i<data.length;++i) {
+          var FerryType = data[i].type;
+          var FerryTime = data[i].dep.split(":");
+          var NextFerry = new Date();
+          NextFerry.setHours(FerryTime[0]);
+          NextFerry.setMinutes(FerryTime[1]);
+          NextFerry.setSeconds(0);
+          // check if we have a ferry for you
+          if (new Date(NextFerry) > new Date()) {
+            FerryCount += 1;
+            var TimeDifferenceMins = diff_minutes(NextFerry,dt);
+            var Other = diff_minutes(NextFerry,dt);
+            var MinuteText = TimeDifferenceMins == 1 ? " minute" : " minutes";
+            var FullText = FerryTime[0] + ":" + FerryTime[1]
+            if (TimeDifferenceMins < 55) {
+              FullText += " <small>in " + TimeDifferenceMins + MinuteText + '</small>'
+            }
+            if (FerryType == 'fast') {
+              FullText = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-lightning-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg> ' + FullText;
+            } else {
+              FullText = '<svg width="1em" height="1em"/></svg> ' + FullText;
+            }
+            $("#FullText").append(FullText + '<br>');
+          }
+          if (FerryCount > maxFerry) {
+            break;
+          }
+        }
+      });
+      // Weather
       $('.weather-temperature').openWeather({
         // not my key!
         key: 'c9d49310f8023ee2617a7634de23c2aa',
@@ -154,21 +156,25 @@
         error: function(data) {
         }
       });
-    });
-  </script>
-  <script>
-    // Instagram
-    $.instagramFeed({
-      'tag': ParameterInstagram,
-      'container': "#instagram",
-      'display_profile': false,
-      'display_biography': false,
-      'display_gallery': true,
-      'callback': null,
-      'styling': true,
-      'items': 4,
-      'items_per_row': 4,
-      'margin': 0.50
-    });
+      // Instagram
+      $.instagramFeed({
+        'tag': ParameterInstagram,
+        'container': "#instagram",
+        'display_profile': false,
+        'display_biography': false,
+        'display_gallery': true,
+        'callback': null,
+        'styling': true,
+        'items': 4,
+        'items_per_row': 4,
+        'margin': 0.50
+      });
+      // NoSleep
+      //var noSleep = new NoSleep();
+      //noSleep.enable();
+      // Repeat
+      setTimeout(arguments.callee, 60000);
+    })();
+
   </script>
 </html>
