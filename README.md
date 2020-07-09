@@ -6,7 +6,7 @@ A dashboard for Inter Island Ferry in Hong Kong.
 
 Open a browser and enter following internet address
 
-https://bert2002.github.io/InterIslandFerryDashboard/?a=1&ferry=PengChauCentral&instagram=pengchau
+https://bert2002.github.io/InterIslandFerryDashboard/?a=1&ferry=PengChauToCentral&instagram=pengchau
 
 # Parameters
 

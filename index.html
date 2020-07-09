@@ -101,7 +101,8 @@
       // Show Ferry Schedule
       $("#FullText").empty()
       $.getJSON("ferry/" + ParameterFerry + "-" + Calendar + ".json", function(data) {
-        for (var i=0;i<data.length;++i) {
+        var FerryCount = 0;
+        for (var i=1;i<data.length;++i) {
           var FerryType = data[i].type;
           var FerryTime = data[i].dep.split(":");
           var NextFerry = new Date();
@@ -170,8 +171,11 @@
         'margin': 0.50
       });
       // NoSleep
-      //var noSleep = new NoSleep();
-      //noSleep.enable();
+      var noSleep = new NoSleep();
+      document.addEventListener('click', function enableNoSleep() {
+        document.removeEventListener('click', enableNoSleep, false);
+          noSleep.enable();
+      }, false);
       // Repeat
       setTimeout(arguments.callee, 60000);
     })();
