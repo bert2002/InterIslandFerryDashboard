@@ -72,6 +72,11 @@
       ParameterFerry = parsed_qs.ferry;
       ParameterFerryName = ParameterFerry.replace(/([A-Z])/g, ' $1').trim();
       ParameterInstagram = parsed_qs.instagram;
+      MaxFerry = (typeof parsed_qs.maxferry === 'undefined') ? MaxFerry : parsed_qs.maxferry;
+      EnableSunrise = (typeof parsed_qs.sunrise === 'undefined') ? EnableSunrise : parsed_qs.sunrise;
+      EnableWind = (typeof parsed_qs.wind === 'undefined') ? EnableWind : parsed_qs.wind;
+      EnableTemperature = (typeof parsed_qs.temperature === 'undefined') ? EnableTemperature : parsed_qs.temperature;
+      EnableHumidity = (typeof parsed_qs.humidity === 'undefined') ? EnableHumidity : parsed_qs.humidity;
 
       // Show Time
       var dt = new Date();
@@ -101,8 +106,8 @@
       // Show Ferry Schedule
       $("#FullText").empty()
       $.getJSON("ferry/" + ParameterFerry + "-" + Calendar + ".json", function(data) {
-        var FerryCount = 0;
-        for (var i=1;i<data.length;++i) {
+        var FerryCount = 1;
+        for (var i=0;i<data.length;++i) {
           var FerryType = data[i].type;
           var FerryTime = data[i].dep.split(":");
           var NextFerry = new Date();
@@ -126,7 +131,7 @@
             }
             $("#FullText").append(FullText + '<br>');
           }
-          if (FerryCount > maxFerry) {
+          if (FerryCount > MaxFerry) {
             break;
           }
         }
@@ -139,20 +144,20 @@
         lat: '22.32',
         lng: '114.18',
         units: 'c',
-        descriptionTarget: EnableTemperature ? '.weather-description' : '',
-        windSpeedTarget: EnableWind ? '.weather-wind-speed' : '',
-        minTemperatureTarget: EnableTemperature ? '.weather-min-temperature' : '',
-        maxTemperatureTarget: EnableTemperature ? '.weather-max-temperature' : '',
-        humidityTarget: EnableHumidity ? '.weather-humidity' : '',
-        sunriseTarget: EnableSunrise ? '.weather-sunrise' : '',
-        sunsetTarget: EnableSunrise ?  '.weather-sunset' : '',
+        descriptionTarget: EnableTemperature == '1' ? '.weather-description' : '',
+        windSpeedTarget: EnableWind == '1' ? '.weather-wind-speed' : '',
+        minTemperatureTarget: EnableTemperature == '1' ? '.weather-min-temperature' : '',
+        maxTemperatureTarget: EnableTemperature == '1' ? '.weather-max-temperature' : '',
+        humidityTarget: EnableHumidity == '1' ? '.weather-humidity' : '',
+        sunriseTarget: EnableSunrise == '1' ? '.weather-sunrise' : '',
+        sunsetTarget: EnableSunrise == '1' ? '.weather-sunset' : '',
         iconTarget: '.weather-icon',
         customIcons: 'dist/img/weather/',
         success: function(data) {
-          EnableSunrise ? $('#sunrise').show() : '';
-          EnableWind ? $('#wind').show() : '';
-          EnableHumidity ? $('#humidity').show() : '';
-          EnableTemperature ? $('#temperature').show() : '';
+          EnableSunrise == '1' ? $('#sunrise').show() : '';
+          EnableWind == '1' ? $('#wind').show() : '';
+          EnableHumidity == '1' ? $('#humidity').show() : '';
+          EnableTemperature == '1' ? $('#temperature').show() : '';
         },
         error: function(data) {
         }
