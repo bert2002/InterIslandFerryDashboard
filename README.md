@@ -30,7 +30,7 @@ https://bert2002.github.io/InterIslandFerryDashboard/?&ferry=PengChauToDiscovery
 
 2. Show additionally wind and humidity
 
-https://bert2002.github.io/InterIslandFerryDashboard/?wind=1&humidity=1
+https://bert2002.github.io/InterIslandFerryDashboard/?&wind=1&humidity=1
 
 # Ferry Schedules
 
