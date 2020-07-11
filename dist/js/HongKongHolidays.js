@@ -1,3 +1,19 @@
 var HongKongHolidays =  [
-	"6July"
+	"1January",
+	"25January",
+	"27January",
+	"28January",
+	"4April",
+	"10April",
+	"11April",
+	"13April",
+	"30April",
+	"1May",
+	"25June",
+	"1July",
+	"1October",
+	"2October",
+	"26October",
+	"25December",
+	"26December"
 ]

@@ -1,0 +1,22 @@
+[
+	{ "dep": "0630", "type": "slow" },
+	{ "dep": "0700", "type": "slow" },
+	{ "dep": "0745", "type": "slow" },
+	{ "dep": "0845", "type": "slow" },
+	{ "dep": "0930", "type": "slow" },
+	{ "dep": "1015", "type": "fast" },
+	{ "dep": "1100", "type": "slow" },
+	{ "dep": "1210", "type": "fast" },
+	{ "dep": "1300", "type": "slow" },
+	{ "dep": "1335", "type": "slow" },
+	{ "dep": "1430", "type": "slow" },
+	{ "dep": "1530", "type": "slow" },
+	{ "dep": "1615", "type": "fast" },
+	{ "dep": "1700", "type": "fast" },
+	{ "dep": "1745", "type": "slow" },
+	{ "dep": "1815", "type": "slow" },
+	{ "dep": "1845", "type": "slow" },
+	{ "dep": "1945", "type": "slow" },
+	{ "dep": "2045", "type": "slow" },
+	{ "dep": "2200", "type": "slow" }
+]

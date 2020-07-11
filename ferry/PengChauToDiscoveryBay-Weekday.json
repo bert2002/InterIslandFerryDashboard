@@ -1,0 +1,21 @@
+[
+	{ "dep": "06:30", "type": "slow" },
+	{ "dep": "07:00", "type": "slow" },
+	{ "dep": "07:45", "type": "fast" },
+	{ "dep": "08:30", "type": "slow" },
+	{ "dep": "09:10", "type": "fast" },
+	{ "dep": "10:15", "type": "fast" },
+	{ "dep": "11:20", "type": "fast" },
+	{ "dep": "12:20", "type": "fast" },
+	{ "dep": "13:00", "type": "slow" },
+	{ "dep": "14:20", "type": "fast" },
+	{ "dep": "15:30", "type": "slow", "weekday": "Saturday" },
+	{ "dep": "16:15", "type": "fast" },
+	{ "dep": "17:00", "type": "fast" },
+	{ "dep": "17:45", "type": "slow" },
+	{ "dep": "18:15", "type": "slow" },
+	{ "dep": "18:45", "type": "slow" },
+	{ "dep": "19:45", "type": "slow" },
+	{ "dep": "20:45", "type": "slow", "weekday": "Saturday" },
+	{ "dep": "22:00", "type": "slow" }
+]
