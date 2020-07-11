@@ -2,11 +2,11 @@
 
 A dashboard for Inter Island Ferries in Hong Kong.
 
-# How to open
+# How to access
 
-Open a browser and enter following internet address
+Open a browser and enter following internet address.
 
-https://bert2002.github.io/InterIslandFerryDashboard/?&ferry=PengChauToCentral&instagram=pengchau
+https://bert2002.github.io/InterIslandFerryDashboard/
 
 # Parameters
 
