@@ -140,7 +140,7 @@
               var MinuteText = TimeDifferenceMins == 1 ? " minute" : " minutes";
               var FullText = FerryTime[0] + ":" + FerryTime[1]
               if (TimeDifferenceMins < 55) {
-                FullText += " <small>in " + TimeDifferenceMins + MinuteText + '</small>'
+                FullText += " <span style='font-size: 14px'>in " + TimeDifferenceMins + MinuteText + '</span>'
               }
               if (typeof FerryWeekday == 'undefined' || ( (typeof FerryWeekday !== 'undefined') && FerryWeekday == weekday ) ) {
                 if (FerryType == 'fast') {
