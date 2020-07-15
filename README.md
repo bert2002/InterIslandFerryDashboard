@@ -14,7 +14,7 @@ You can change the behavior of the website by adding parameters to the url. The 
 
 | Parameter | Default | Allowed | Description |
 |-----------|---------|---------|-------------|
-| ferry| PengChauToCentral |  | Defines which ferry schedule to be shown |
+| ferry| PengChauToCentral |  | Defines which ferry schedule to be shown. This can be a comma separated list |
 | instagram | pengchau | | Show images based on the tag |
 | maxferry | 3 | 1..100 | Show next X ferries |
 | sunrise | 0 | 1 | Show sunrise and sundown time |
@@ -32,10 +32,18 @@ https://bert2002.github.io/InterIslandFerryDashboard/?&ferry=PengChauToDiscovery
 
 https://bert2002.github.io/InterIslandFerryDashboard/?&wind=1&humidity=1
 
+3. Show multiple ferry schedules
+
+https://bert2002.github.io/InterIslandFerryDashboard/?&ferry=PengChauToCentral,PengChauToDiscoveryBay
+
+`Note:` Up to 4 schedules can be shown.
+
 # Ferry Schedules
 
 * Peng Chau to Central (PengChauToCentral)
 * Peng Chau to DiscoveryBay (PengChauToDiscoveryBay)
+
+* Central to Peng Chau (CentralToPengChau)
 
 # Screenshot
 
