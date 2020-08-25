@@ -203,6 +203,10 @@
         document.removeEventListener('click', enableNoSleep, false);
           noSleep.enable();
       }, false);
+      // Reload website if time is 00:00
+      if ( (hours_with_leading_zeros(dt) == "00") && (minutes_with_leading_zeros(dt) == "00" )) {
+        location.reload();
+      }
       // Repeat
       setTimeout(arguments.callee, 60000);
     })();
