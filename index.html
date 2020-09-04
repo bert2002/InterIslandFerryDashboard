@@ -81,6 +81,7 @@
   </body>
   <script>
     (function(){
+      try {
       // Read Parameters
       var parsed_qs = parse_query_string(location.search);
       ParameterFerry = (typeof parsed_qs.ferry === 'undefined') ? FerrySchedule : parsed_qs.ferry;
@@ -207,6 +208,9 @@
       if ( (hours_with_leading_zeros(dt) == "00") && (minutes_with_leading_zeros(dt) == "00" )) {
         location.reload();
       }
+    } catch(err) {
+      console.log(err)
+    }
       // Repeat
       setTimeout(arguments.callee, 60000);
     })();
